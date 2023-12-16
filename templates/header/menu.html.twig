@@ -1,0 +1,19 @@
+{# header/menu.html.twig #}
+{% extends 'header/layout.html.twig'%}
+{% block menu %}
+<div class="menu">
+    <ul class="nav justify-content-start text-xl-center navbar-text ">
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ path('front_page') }}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ path('about') }}">About</a></li>
+        
+            {% if app.user %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_logout') }}">Logout</a> </li>
+            {% else %}
+            <li class="nav-item"><a class="nav-link" href="{{ path('app_login') }}">Login</a> </li>
+            <li class="nav-item">  <a class="nav-link" href="{{ path('app_register') }}">Register</a> </li>
+            {% endif %}
+       
+    </ul>
+</div>
+{% endblock %}
