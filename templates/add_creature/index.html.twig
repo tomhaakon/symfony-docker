@@ -6,19 +6,8 @@
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/add_creature.css') }}">
 {% endblock %}
-{% block content %}
-    {% for flash_message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ flash_message }}
-        </div>
-    {% endfor %}
-    {% for flash_message in app.flashes('error') %}
-    <div class="alert alert-danger">
-        {{ flash_message }}
-    </div>
-{% endfor %}
-    
-    <div class="mt-4 col-8  mx-auto">
+{% block content %}     
+    <div class="mt-4 col-8 mx-auto">
         <h2>Add a New Creature</h2>
         <div class="card">
             <div class="card-body">

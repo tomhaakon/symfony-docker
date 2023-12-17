@@ -7,23 +7,25 @@
     <h1>Creatures</h1>
         {% if creatures|length > 0 %}
             <div class="row border-bottom mb-2">
+                <div class="col-md-1 fw-bold">id</div>
                 <div class="col-md-2 fw-bold">Name</div>
                 <div class="col-md-3 fw-bold ">decription</div>
                 <div class="col-md-1 fw-bold">Level</div>
                 <div class="col-md-1 fw-bold">Health</div>
                 <div class="col-md-1 fw-bold">Armor</div>
                 <div class="col-md-2 fw-bold">Damage</div>
-                <div class="col-md-2 fw-bold">Actions</div>
+                <div class="col-md-1 fw-bold">Actions</div>
             </div>
             {% for creature in creatures %}
                 <div class="row mb-2">
+                    <div class="col-md-1">{{ creature.id }}</div>
                     <div class="col-md-2">{{ creature.name }}</div>
                     <div class="col-md-3 text-truncate">{{ creature.decription }}</div>
                     <div class="col-md-1">{{ creature.level }}</div>
                     <div class="col-md-1">{{ creature.health }}</div>
                     <div class="col-md-1">{{ creature.armor }}</div>
                     <div class="col-md-2">{{ creature.minDmg }} - {{ creature.maxDmg }}</div>
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                         <a href="{{ path('app_edit_creature', {'id': creature.id}) }}" class="btn btn-sm btn-primary">Edit</a>
                         <!-- Add more actions as needed -->
                     </div>

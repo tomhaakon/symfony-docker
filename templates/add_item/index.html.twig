@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add Item{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .form-list-group .list-group-item {
+  
+        }
+        .form-list-group input {
+            width: 100%;
+        }
+        .form-list-group label {
+            display: block;
+            
+        }
+    </style>
+{% endblock %}
+{% block content %}
+<div class="mt-4 col-8 mx-auto">
+    {{ form_start(form, {'attr': {'class': 'form-horizontal form-list-group'}}) }}
+
+    {# Form Fields in a List-Style Layout #}
+    <div class="list-group">
+        <div class="list-group-item">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+        </div>
+        <div class="list-group-item">
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description) }}
+        </div>
+        <div class="list-group-item">
+            {{ form_label(form.set_item) }}
+            {{ form_widget(form.set_item) }}
+            {{ form_label(form.item_level) }}
+            {{ form_widget(form.item_level) }}
+            {{ form_label(form.slot) }}
+            {{ form_widget(form.slot) }}
+        </div>
+
+        {# Stats #}
+        <div class="list-group-item">
+            {{ form_label(form.type) }}
+            {{ form_widget(form.type) }}
+        </div>
+        <div class="list-group-item">
+            {{ form_label(form.stat_health) }}
+            {{ form_widget(form.stat_health) }}
+        </div>
+        <div class="list-group-item">
+            {{ form_label(form.stat_armor) }}
+            {{ form_widget(form.stat_armor) }}
+        </div>
+        <div class="list-group-item">
+            {{ form_label(form.stat_min_dmg) }}
+            {{ form_widget(form.stat_min_dmg) }}
+        </div>
+        <div class="list-group-item">
+            {{ form_label(form.stat_max_dmg) }}
+            {{ form_widget(form.stat_max_dmg) }}
+        </div>
+    </div>
+
+    <div class="text-center mt-3">
+        <button type="submit" class="btn btn-primary">Add</button>
+    </div>
+
+    {{ form_end(form) }}
+</div>
+{% endblock %}
+    

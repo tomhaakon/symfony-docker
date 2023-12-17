@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DisplayLootTableController!{% endblock %}
+
+{% block content %}
+<div class="container">
+{{ loot_table ? loot_table.name : 'This creature has no loot table'}}
+</div>
+{% include 'add_item_to_creature_loot_table/index.html.twig' %}  
+{% endblock %}
