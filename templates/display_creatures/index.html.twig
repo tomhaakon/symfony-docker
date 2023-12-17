@@ -1,38 +1,48 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Creatures{% endblock %}
+{% block page_title %}Creatures{% endblock %}
 
 {% block content %}
-    <div class="container">
-    <h1>Creatures</h1>
+  
+        <div class="text-end mb-3">
+            <a class="btn btn-primary" href="{{ path('app_add_creature') }}">Add a new creature</a>
+        </div>
+
         {% if creatures|length > 0 %}
-            <div class="row border-bottom mb-2">
-                <div class="col-md-1 fw-bold">id</div>
-                <div class="col-md-2 fw-bold">Name</div>
-                <div class="col-md-3 fw-bold ">decription</div>
-                <div class="col-md-1 fw-bold">Level</div>
-                <div class="col-md-1 fw-bold">Health</div>
-                <div class="col-md-1 fw-bold">Armor</div>
-                <div class="col-md-2 fw-bold">Damage</div>
-                <div class="col-md-1 fw-bold">Actions</div>
-            </div>
-            {% for creature in creatures %}
-                <div class="row mb-2">
-                    <div class="col-md-1">{{ creature.id }}</div>
-                    <div class="col-md-2">{{ creature.name }}</div>
-                    <div class="col-md-3 text-truncate">{{ creature.decription }}</div>
-                    <div class="col-md-1">{{ creature.level }}</div>
-                    <div class="col-md-1">{{ creature.health }}</div>
-                    <div class="col-md-1">{{ creature.armor }}</div>
-                    <div class="col-md-2">{{ creature.minDmg }} - {{ creature.maxDmg }}</div>
-                    <div class="col-md-1">
-                        <a href="{{ path('app_edit_creature', {'id': creature.id}) }}" class="btn btn-sm btn-primary">Edit</a>
-                        <!-- Add more actions as needed -->
-                    </div>
-                </div>
-            {% endfor %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Level</th>
+                        <th scope="col">Health</th>
+                        <th scope="col">Armor</th>
+                        <th scope="col">Damage</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for creature in creatures %}
+                        <tr>
+                            <td>{{ creature.id }}</td>
+                            <td>{{ creature.name }}</td>
+                            <td class="text-truncate" style="max-width: 200px;">{{ creature.decription }}</td>
+                            <td>{{ creature.level }}</td>
+                            <td>{{ creature.health }}</td>
+                            <td>{{ creature.armor }}</td>
+                            <td>{{ creature.minDmg }} - {{ creature.maxDmg }}</td>
+                            <td>
+                                <a href="{{ path('app_edit_creature', {'id': creature.id}) }}" class="btn btn-sm btn-primary">Edit</a>
+                                <!-- Add more actions as needed -->
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         {% else %}
             <p>No creatures found.</p>
         {% endif %}
-    </div>
+  
 {% endblock %}

@@ -2,33 +2,34 @@
 
 namespace App\Repository;
 
-use App\Entity\Item;
+use App\Entity\ItemTypes;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Item>
+ * @extends ServiceEntityRepository<ItemTypes>
  *
- * @method Item|null find($id, $lockMode = null, $lockVersion = null)
- * @method Item|null findOneBy(array $criteria, array $orderBy = null)
- * @method Item[]    findAll()
- * @method Item[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ItemTypes|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ItemTypes|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ItemTypes[]    findAll()
+ * @method ItemTypes[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ItemRepository extends ServiceEntityRepository
+class ItemTypesRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Item::class);
+        parent::__construct($registry, ItemTypes::class);
     }
-        public function findAllSortedByDateAdded()
+    public function findByIds(array $ids)
     {
-        return $this->createQueryBuilder('c')
-            ->orderBy('c.date_added', 'DESC') // Assuming 'dateAdded' is your field name
+        return $this->createQueryBuilder('it')
+            ->where('it.id IN (:ids)')
+            ->setParameter('ids', $ids)
             ->getQuery()
             ->getResult();
     }
 //    /**
-//     * @return Item[] Returns an array of Item objects
+//     * @return ItemTypes[] Returns an array of ItemTypes objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -42,7 +43,7 @@ class ItemRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Item
+//    public function findOneBySomeField($value): ?ItemTypes
 //    {
 //        return $this->createQueryBuilder('i')
 //            ->andWhere('i.exampleField = :val')

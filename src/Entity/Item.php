@@ -17,37 +17,37 @@ class Item
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date_added = null;
+    #[ORM\Column(type: 'datetime')]
+    private $date_added;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date_last_updated = null;
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private $date_last_updated;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $item_level = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $stat_min_dmg = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $stat_max_dmg = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $stat_armor = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $stat_health = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $slot = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $type = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $set_item = null;
 
     public function getId(): ?int
@@ -115,12 +115,13 @@ class Item
         return $this->item_level;
     }
 
-    public function setItemLevel(int $item_level): static
+    public function setItemLevel(?int $item_level): self
     {
         $this->item_level = $item_level;
 
         return $this;
     }
+
 
     public function getStatMinDmg(): ?int
     {
@@ -199,10 +200,11 @@ class Item
         return $this->set_item;
     }
 
-    public function setSetItem(int $set_item): static
-    {
-        $this->set_item = $set_item;
+public function setSetItem(?int $set_item): self
+{
+    $this->set_item = $set_item;
 
-        return $this;
-    }
+    return $this;
+}
+
 }

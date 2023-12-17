@@ -1,10 +1,13 @@
 {% block admin_bar %}
-<ul class="nav justify-content-end navbar-text fs-6 align-items-center">
+<ul class="nav px-4 navbar-text fs-6 align-items-center">
 <li class="nav-item text-uppercase fw-bolder  ">admin:</li>
-<li class="nav-item"><a class="nav-link" href="{{ path('app_add_item')}}">Add Item</a> </li>
 <li class="nav-item"><a class="nav-link" href="{{ path('app_item')}}">Items</a> </li>
 <li class="nav-item"><a class="nav-link" href="{{ path('app_creatures')}}">Creatures</a> </li>
-<li class="nav-item"><a class="nav-link" href="{{ path('app_add_creature')}}">Add creatures</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ path('app_display_users')}}">Users</a> </li>
+{# <li class="nav-item"><a class="nav-link" href="{{ path('app_display_characters')}}">Characters</a> </li> #}
+
+
+
 <li class="nav-item"><a class="nav-link" href="#"></a></li>
 </ul>
 {% endblock %}

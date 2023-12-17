@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Add Item{% endblock %}
+{% block title %}Edit item{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     <style>
@@ -19,7 +20,8 @@
         }
     </style>
 {% endblock %}
-{%block page_title %}Add Item{% endblock %}
+
+{% block page_title %}Edit item #{{item.id}} - {{ item.name}}{% endblock %}
 
 {% block content %}
 <div class="mt-4 lg-col-8 mx-auto">
@@ -34,9 +36,11 @@
                     {{ form_widget(form.name) }}
                 </div>
                 <div class="col">
-                    {{ form_label(form.type) }}
-                    {{ form_widget(form.type) }}
+                
+                   {{ form_row(form.type) }}
+                 {# {{ get_item_type_name(form.type) }} #}
                 </div>
+
             </div>
     
         </div>
@@ -92,7 +96,7 @@
     </div>
 
     <div class="mt-3 text-end">
-        <button type="submit" class="btn btn-primary">Add item</button>
+        <button type="submit" class="btn btn-primary">Edit item</button>
     </div>
 
     {{ form_end(form) }}

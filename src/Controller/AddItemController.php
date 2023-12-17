@@ -30,6 +30,9 @@ class AddItemController extends AbstractController
                 $this->addFlash('error', 'An item with this name already exists.');
             } else {
                 $item->setDateAdded(new \DateTime()); 
+                $item->setItemLevel(1);
+                $item->setSetItem(0);
+
                 $entityManger->persist($item);
                 $entityManger->flush();
 
