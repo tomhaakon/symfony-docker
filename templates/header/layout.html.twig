@@ -1,11 +1,23 @@
 {% block stylesheets %}
 <link rel="stylesheet" type="text/css" href="/css/header.css"/>
+<link rel="stylesheet" type="text/css" href="/css/display_admin_bar.css"/>
 {% endblock %}
+
 {% block menu %}
-<div class="header-menu">
+<div class="header-menu ">
 {% include 'header/menu.html.twig' %}
 </div>
 {% endblock %}
+
+{% if app.user %}
+{% block admin_bar %}
+<div class="admin-menu">
+{% include 'display_admin_bar/index.html.twig' %}
+</div>
+{% endblock %}
+{% endif %}
+
+
 
 
   

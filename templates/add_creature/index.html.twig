@@ -1,0 +1,75 @@
+{# templates/add_creature/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Add Creature{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/add_creature.css') }}">
+{% endblock %}
+{% block content %}
+    {% for flash_message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+    {% for flash_message in app.flashes('error') %}
+    <div class="alert alert-danger">
+        {{ flash_message }}
+    </div>
+{% endfor %}
+    
+    <div class="mt-4 col-8  mx-auto">
+        <h2>Add a New Creature</h2>
+        <div class="card">
+            <div class="card-body">
+                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+                <div class="row">
+                    <div class="col-md-9 mb-3">
+                        {{ form_label(form.name) }}
+                        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.name) }}
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        {{ form_label(form.level) }}
+                        {{ form_widget(form.level, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.level) }}
+                    </div>
+                </div>
+
+           
+
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        {{ form_label(form.health) }}
+                        {{ form_widget(form.health, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.health) }}
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        {{ form_label(form.armor) }}
+                        {{ form_widget(form.armor, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.armor) }}
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        {{ form_label(form.min_dmg) }}
+                        {{ form_widget(form.min_dmg, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.min_dmg) }}
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        {{ form_label(form.max_dmg) }}
+                        {{ form_widget(form.max_dmg, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.max_dmg) }}
+                    </div>
+                </div>
+                <div class="mb-3">
+                    {{ form_label(form.decription) }}
+                    {{ form_widget(form.decription, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.decription) }}
+                </div>
+                <button type="submit" class="btn btn-primary">Add Creature</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

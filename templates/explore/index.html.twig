@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ExploreController!{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/explore.css') }}">
+{% endblock %}
+{% block content %}
+<h2>Explore</h2>
+<div class="fs-5">Creatures to attack: </div>
+
+{% for creature in creatures %}
+    <div class="creature">
+        {{ creature.name }}
+    </div>
+{% endfor %}
+{% endblock %}

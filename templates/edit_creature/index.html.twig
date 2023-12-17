@@ -1,0 +1,104 @@
+{# templates/creature/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Creature{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var form = document.querySelector('form');
+            var updateButton = document.getElementById('updateButton');
+            var originalData = new FormData(form);
+
+            form.addEventListener('change', function () {
+                var currentData = new FormData(form);
+                var isDifferent = false;
+
+                for (var [key, value] of currentData.entries()) {
+                    if (value !== originalData.get(key)) {
+                        isDifferent = true;
+                        break;
+                    }
+                }
+
+                updateButton.disabled = !isDifferent;
+            });
+        });
+    </script>
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/add_creature.css') }}">
+{% endblock %}
+{% block content %}
+{# {% for type, messages in {'success': app.flashes('success'), 'error': app.flashes('error')} %}
+    {% for message in messages %}
+        <div class="alert alert-{{ type }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %} #}
+
+    <div class="edit-creature mt-4 col-lg-5 col-6 col-xs-8 col-xl-4 mx-auto">
+        <h1 class="mb-4">Edit Creature</h1>
+        <div class="card">
+            <div class="card-body">
+                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                <div class="mb-3">
+                    {{ form_label(form.name) }}
+                    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.name) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_label(form.decription) }}
+                    {{ form_widget(form.decription, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.decription) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_label(form.level) }}
+                    {{ form_widget(form.level, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.level) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_label(form.health) }}
+                    {{ form_widget(form.health, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.health) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_label(form.armor) }}
+                    {{ form_widget(form.armor, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.armor) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_label(form.min_dmg) }}
+                    {{ form_widget(form.min_dmg, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.min_dmg) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_label(form.max_dmg) }}
+                    {{ form_widget(form.max_dmg, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.max_dmg) }}
+                </div>
+                <a href="{{ path('app_creatures') }}" class="btn btn-secondary">Back</a>
+                <button type="submit" id="updateButton" class="btn btn-primary" disabled>Update Creature</button>
+                
+       
+
+                {{ form_end(form) }}   
+                    <div class="text-center my-2">
+    <div>Date updated: {{date_updated}}</div>
+    <div>Date added: {{date_added}}</div>
+    </div>
+        </div>
+    </div> 
+        <div class=" text-end mb-5">
+        <form method="post" action="{{ path('app_delete_creature', {'id': creature.id}) }}" onsubmit="return confirm('Are you sure you want to delete this creature?');">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ creature.id) }}">
+        <button class="btn btn-danger ">Delete</button>
+        </form>
+        </div>
+
+
+{% endblock %}
+
+
